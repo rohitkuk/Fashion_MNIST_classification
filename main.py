@@ -63,6 +63,10 @@ def loader_data(data_set):
 
 train_dataset, train_loader, test_dataset, test_loader = loader_data('MNIST')
 
+# print(train_dataset)
+
+# sys.exit()
+
 # Exploring the data 
 nsamples = 10
 classes_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal','Shirt', 'Sneaker', 'Bag', 'Ankle boot'] 
@@ -165,9 +169,9 @@ num_epochs    = 10
 device = 'cuda'if torch.cuda.is_available() else 'cpu'
 
 # Instantiate the Model
-# model = FCNN(input_size, num_classes).to(device)
+model = LinearNet(input_size, num_classes).to(device)
 # model = FashionCNN().to(device)
-model = FashionCNN().to(device)
+# model = FashionCNN().to(device)
 
 
 print(model)
@@ -182,6 +186,9 @@ def train(epoch):
     # Initializing or setting to the training method
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
+        print(data.shape )
+        print(target.shape)
+        sys.exit()
         # Converting the tensor to be calculated on GPU if available
         data = data.view(100, 1, 28, 28)
         data, target = data.to(device), target.to(device)
